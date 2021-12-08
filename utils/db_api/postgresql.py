@@ -1,9 +1,8 @@
 import asyncio
 import os.path
-from pathlib import Path
-
 import asyncpg
 
+from pathlib import Path
 from typing import Union
 from datetime import datetime, timedelta
 from asyncpg.pool import Pool
