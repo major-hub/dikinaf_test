@@ -1,5 +1,6 @@
 aiogram==2.16
 aiohttp==3.8.1
+aioredis==2.0.0
 aiosignal==1.2.0
 async-timeout==4.0.1
 asyncpg==0.25.0
@@ -8,6 +9,7 @@ Babel==2.9.1
 certifi==2021.10.8
 charset-normalizer==2.0.9
 environs==9.3.5
+fpdf==1.7.2
 frozenlist==1.2.0
 idna==3.3
 marshmallow==3.14.1

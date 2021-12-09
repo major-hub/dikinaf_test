@@ -34,7 +34,7 @@ class Database:
 
     @property
     def base_path(self):
-        return f"media/{self.now.year}/{self.now.month}/{self.now.day}/"
+        return f"media/resumes/"
 
     async def create_table_profile(self, force=False):
         if force:
@@ -67,10 +67,13 @@ class Database:
         full_name = await self.pool.fetchrow(sql, telegram_id)
         return full_name[0]
 
+    async def get_phone_number(self, telegram_id: int):
+        sql = "SELECT phone_number FROM profile WHERE telegram_id=$1;"
+        phone_number = await self.pool.fetchrow(sql, telegram_id)
+        return phone_number[0]
+
     async def set_resume_path(self, telegram_id):
-        full_name = await self.get_full_name(telegram_id)
-        path = self.base_path + f"{telegram_id}/{full_name}'s resume.pdf"
-        # TODO: move from temp to resume folder
+        path = self.base_path + f"{str(telegram_id)}.pdf"
         sql = "UPDATE profile SET resume_path=$2 WHERE telegram_id=$1;"
         await self.pool.execute(sql, telegram_id, path)
 
