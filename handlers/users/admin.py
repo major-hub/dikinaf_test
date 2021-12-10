@@ -15,9 +15,12 @@ async def handle_admin_moderators(message: types.Message):
 @dp.message_handler(Text(equals=btn_admin_menu[1][0]), is_admin=True)
 async def handle_admin_statistics(message: types.Message):
     stats = await db.get_statistics()
-    text = "\n".join(
-        [f"`Moderator: {stat[1]}\tEstimated: {stat[0]}`" for stat in stats]
-    )
+    if stats:
+        text = "\n".join(
+            [f"`Moderator: {stat[1]}\tEstimated: {stat[0]}`" for stat in stats]
+        )
+    else:
+        text = "Moderators haven't estimated yet"
     await message.answer(text, parse_mode=types.ParseMode.MARKDOWN)
 
 
