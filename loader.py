@@ -14,3 +14,5 @@ dp = Dispatcher(bot, storage=storage)
 db = Database()
 loop = asyncio.get_event_loop()
 loop.run_until_complete(db.create())  # is need to create pool
+loop.run_until_complete(db.create_table_profile())  # is need to create pool
+loop.run_until_complete(db.create_table_resume())  # is need to create pool

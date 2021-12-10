@@ -18,7 +18,7 @@ from states.resume import ResumeState
 from utils.create_pdf import pdf_create
 
 
-@dp.message_handler(Text(equals=[b_with[0][0], b_without[0][0]]))
+@dp.message_handler(Text(equals=[b_with[0][0], b_without[0][0]]), is_registrated=True)
 async def handle_create_or_update(message: types.Message):
     await ResumeState.P_LANGUAGES.set()
     text = "Which programming languages do you know?\n\n`e.x: Python, C++, GO`"
@@ -129,6 +129,7 @@ async def handle_update(message: types.Message, state: FSMContext):
         new_path = root_dir / f"media/resumes/{str(message.from_user.id)}.pdf"
         os.replace(old_path, new_path)
         await db.set_resume_path(message.from_user.id)
+        await db.set_resume_ball_null(message.from_user.id)
         await state.finish()
         text = "Your Resume changed successfully !"
         markup = types.ReplyKeyboardMarkup(btn_menu_user_with_resume, True)

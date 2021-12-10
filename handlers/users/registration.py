@@ -5,7 +5,8 @@ from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
 
-from keyboards.default.registration import btn_registration, btn_phone_number, btn_menu_user_without_resume
+from keyboards.default.start import btn_registration, btn_phone_number
+from keyboards.default.resume import btn_menu_user_without_resume
 from loader import dp, db
 from states.registration import RegistrationState
 
